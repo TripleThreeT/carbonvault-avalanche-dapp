@@ -9,25 +9,30 @@ Corporations and individuals want to buy, hold, retire, and trade verifiable car
 - Subnets for future scale: A custom subnet could handle high-volume issuance with compliance rules (e.g., gas token in fiat-pegged stablecoin, isolated for regulatory needs).
 
 ## Architecture Diagram
-User (Corporations / Individuals)
-          ↓ (Core Wallet connect + sign transaction)
-Frontend (HTML + ethers.js)
-          ↓
-Avalanche Fuji C-Chain
-    ├── CarbonCreditToken.sol
-    │     • ERC-20: mint, transfer, retire credits
-    ├── CarbonRegistry.sol
-    │     • Issuance, validation, project metadata
-    └── OracleConsumer.sol
-          • Mock Chainlink price feed (real oracle ready)
 
-**Deployed Addresses on Fuji Testnet:**
-- CarbonCreditToken: `0x95a56CC491d1df281fA42C0c7cd4CBd875a7dddf`
-- CarbonRegistry: `0x8B1C7eA72c47bEA382Ba7B2e9F01C369A085f896`
-- OracleConsumer: `0x7a2003e629662B8Dbd5C54Dd792d39f7DC34586f`
+**User (Corporations / Individuals)**  
+↓ Core Wallet connect + sign transaction
 
-**System Flow:**
+**Frontend (HTML + ethers.js)**  
+↓ Interacts with smart contracts on Avalanche Fuji C-Chain
+
+**Avalanche Fuji C-Chain**
+- **CarbonCreditToken.sol**
+  - ERC-20 token for minting, transferring, and retiring carbon credits
+- **CarbonRegistry.sol**
+  - Handles issuance, validation, and project metadata
+- **OracleConsumer.sol**
+  - Provides mock Chainlink price feed data and is ready for real oracle integration
+
+## Deployed Addresses on Fuji Testnet
+
+- **CarbonCreditToken:** `0x95a56CC491d1df281fA42C0c7cd4CBd875a7dddf`
+- **CarbonRegistry:** `0x8B1C7eA72c47bEA382Ba7B2e9F01C369A085f896`
+- **OracleConsumer:** `0x7a2003e629662B8Dbd5C54Dd792d39f7DC34586f`
+
+## System Flow
+
 - Frontend connects to Core Wallet
-- Registry.registerProject() creates metadata and calls Token.mint()
-- OracleConsumer provides carbon price data to the system
-- All actions are transparent and on-chain with low gas
+- `Registry.registerProject()` creates metadata and calls `Token.mint()`
+- `OracleConsumer` provides carbon price data to the system
+- All actions are transparent, on-chain, and use low gas fees
