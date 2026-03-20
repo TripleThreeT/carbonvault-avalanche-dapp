@@ -36,3 +36,23 @@ Corporations and individuals want to buy, hold, retire, and trade verifiable car
 - `Registry.registerProject()` creates metadata and calls `Token.mint()`
 - `OracleConsumer` provides carbon price data to the system
 - All actions are transparent, on-chain, and use low gas fees
+
+## Design Decisions (Architectural Thinking)
+
+- **Separate Registry contract:** Keeps metadata and validation logic modular, exactly as requested.
+- **ERC-20 token:** Standard for fungible carbon credits, making transfer and retirement straightforward.
+- **Mock oracle first:** Simulates real-world carbon price data and can be upgraded to live Chainlink later.
+- **Hardhat 2 + CommonJS:** Stable setup for reliable deployment on Avalanche.
+- **Why Avalanche:** Low gas, near-instant finality, native EVM + Chainlink support, and future subnet scalability.
+
+## How to Run Locally
+
+1. `npm install`
+2. Add your Core Wallet private key to `.env`
+3. `npx hardhat run scripts/deploy.js --network fuji`
+4. Open `frontend/index.html`
+
+## What I Learned
+
+Architectural thinking — components and data flow — is more important than just deploying a token.  
+Avalanche’s speed and Chainlink integration make it a strong fit for real-world ESG applications.
