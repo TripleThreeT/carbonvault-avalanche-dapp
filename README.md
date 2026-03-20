@@ -10,13 +10,16 @@ Corporations and individuals want to buy, hold, retire, and trade verifiable car
 
 ## Architecture Diagram
 User (Corporations / Individuals)
-↓ (Core Wallet connect + sign tx)
+          ↓ (Core Wallet connect + sign transaction)
 Frontend (HTML + ethers.js)
-↓
+          ↓
 Avalanche Fuji C-Chain
-├── CarbonCreditToken (ERC-20: mint / transfer / retire)
-├── CarbonRegistry (issuance, validation, metadata)
-└── OracleConsumer (mock Chainlink price feed)
+    ├── CarbonCreditToken.sol
+    │     • ERC-20: mint, transfer, retire credits
+    ├── CarbonRegistry.sol
+    │     • Issuance, validation, project metadata
+    └── OracleConsumer.sol
+          • Mock Chainlink price feed (real oracle ready)
 
 **Deployed Addresses on Fuji Testnet:**
 - CarbonCreditToken: `0x95a56CC491d1df281fA42C0c7cd4CBd875a7dddf`
